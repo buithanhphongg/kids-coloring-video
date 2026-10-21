@@ -1,0 +1,8 @@
+node_modules/
+renders/
+.hyperframes/
+*.mp4
+*.mov
+*.webm
+.DS_Store
+Thumbs.db

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="vi" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #FFF7E6; }
+      #root {
+        position: relative; width: 100%; height: 100%; overflow: hidden;
+        font-family: sans-serif; color: #2B2118;
+        background:
+          radial-gradient(760px 620px at 18% 10%, rgba(255,236,190,.85), transparent 65%),
+          radial-gradient(900px 700px at 84% 90%, rgba(173,216,230,.42), transparent 68%),
+          linear-gradient(170deg, #FFFBF0 0%, #FFF1D6 55%, #F7E3BE 100%);
+      }
+      #paper {
+        position: absolute; inset: 0; pointer-events: none; opacity: .5;
+        background-image:
+          radial-gradient(rgba(150,110,60,.10) 1px, transparent 1.4px),
+          radial-gradient(rgba(150,110,60,.07) 1px, transparent 1.4px);
+        background-size: 26px 26px, 26px 26px;
+        background-position: 0 0, 13px 13px;
+      }
+      #head {
+        position: absolute; left: 0; right: 0; top: 96px; text-align: center;
+        font-size: 34px; font-weight: 900; letter-spacing: .28em; color: #B4552C;
+      }
+      .scene { position: absolute; inset: 0; opacity: 0; }
+      .name {
+        position: absolute; left: 0; right: 0; top: 176px; text-align: center;
+        font-size: 88px; font-weight: 900; letter-spacing: -.01em; color: #2B2118;
+      }
+      .art { position: absolute; left: 90px; right: 90px; top: 380px; height: 900px; }
+      .art svg { width: 100%; height: 100%; display: block; overflow: visible; }
+      .art-el { opacity: 0; }
+      .ink { stroke: #2B2118; stroke-width: 9; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+      .stamp {
+        position: absolute; left: 0; right: 0; top: 1210px; margin: 0 auto; width: max-content;
+        background: #E76F51; color: #FFFDF7; font-size: 62px; font-weight: 900;
+        letter-spacing: .12em; padding: 18px 54px; border-radius: 22px;
+        box-shadow: 0 10px 0 rgba(140,60,30,.35); opacity: 0;
+      }
+      .spark { opacity: 0; }
+      #hud {
+        position: absolute; left: 0; right: 0; bottom: 120px; height: 24px;
+        display: flex; gap: 22px; justify-content: center; align-items: center;
+      }
+      .dot { width: 70px; height: 12px; border-radius: 99px; background: rgba(120,80,40,.22); }
+      #brand {
+        position: absolute; left: 0; right: 0; bottom: 58px; text-align: center;
+        font-size: 26px; letter-spacing: .3em; font-weight: 700; color: #7A4C26;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="25.5"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="paper"></div>
+      <div id="head">TÔ MÀU CÙNG BÉ</div>
+
+      <!-- ================= PAGE 1 : CHÚ MÈO ================= -->
+      <section class="scene" id="p1">
+        <div class="name">CHÚ MÈO</div>
+        <div class="art">
+          <svg viewBox="0 0 900 900" id="art1">
+            <!-- ears -->
+            <polygon class="art-el fillr ink" data-color="#F4A259" points="252,330 214,148 396,252"/>
+            <polygon class="art-el fillr ink" data-color="#F4A259" points="648,330 686,148 504,252"/>
+            <polygon class="art-el fillr ink" data-color="#F7B2B7" points="272,308 248,196 356,266"/>
+            <polygon class="art-el fillr ink" data-color="#F7B2B7" points="628,308 652,196 544,266"/>
+            <!-- head -->
+            <ellipse class="art-el fillr ink" data-color="#F4A259" cx="450" cy="474" rx="248" ry="222"/>
+            <!-- forehead stripes -->
+            <path class="art-el ink" d="M418 300 q12 -46 32 -62" fill="none" stroke-width="16"/>
+            <path class="art-el ink" d="M452 296 q4 -50 2 -70" fill="none" stroke-width="16"/>
+            <path class="art-el ink" d="M486 300 q-8 -46 -26 -62" fill="none" stroke-width="16"/>
+            <!-- eyes -->
+            <ellipse class="art-el ink" cx="352" cy="452" rx="40" ry="54" fill="#2B2118"/>
+            <ellipse class="art-el ink" cx="548" cy="452" rx="40" ry="54" fill="#2B2118"/>
+            <circle class="art-el" cx="364" cy="432" r="13" fill="#FFFDF7"/>
+            <circle class="art-el" cx="560" cy="432" r="13" fill="#FFFDF7"/>
+            <!-- nose -->
+            <polygon class="art-el fillr ink" data-color="#E76F51" points="450,540 424,512 476,512"/>
+            <!-- mouth -->
+            <path class="art-el ink" d="M450 542 q-34 44 -66 8" fill="none"/>
+            <path class="art-el ink" d="M450 542 q34 44 66 8" fill="none"/>
+            <!-- whiskers -->
+            <path class="art-el ink" d="M300 512 L148 492" fill="none"/>
+            <path class="art-el ink" d="M300 546 L152 552" fill="none"/>
+            <path class="art-el ink" d="M600 512 L752 492" fill="none"/>
+            <path class="art-el ink" d="M600 546 L748 552" fill="none"/>
+            <!-- blush -->
+            <circle class="art-el fillr" data-color="#F7B2B7" cx="300" cy="556" r="34"/>
+            <circle class="art-el fillr" data-color="#F7B2B7" cx="600" cy="556" r="34"/>
+            <!-- sparkles -->
+            <g class="spark" fill="#F9C74F">
+              <circle cx="160" cy="300" r="14"/><circle cx="760" cy="620" r="11"/>
+              <circle cx="700" cy="270" r="9"/><circle cx="230" cy="700" r="12"/>
+            </g>
+          </svg>
+        </div>
+        <div class="stamp">XONG!</div>
+      </section>
+
+      <!-- ================= PAGE 2 : BÔNG HOA ================= -->
+      <section class="scene" id="p2">
+        <div class="name">BÔNG HOA</div>
+        <div class="art">
+          <svg viewBox="0 0 900 900" id="art2">
+            <path class="art-el fillr ink" data-color="#7FB069"
+                  d="M436 470 C424 590 468 668 450 800 L500 800 C516 676 474 586 480 470 Z"/>
+            <path class="art-el fillr ink" data-color="#7FB069"
+                  d="M462 640 C520 612 570 626 604 668 C556 700 496 692 462 664 Z"/>
+            <path class="art-el fillr ink" data-color="#7FB069"
+                  d="M452 706 C398 676 344 690 310 732 C358 766 420 756 452 730 Z"/>
+            <g transform="rotate(0 450 400)">
+              <ellipse class="art-el fillr ink" data-color="#F28DB2" cx="450" cy="268" rx="78" ry="118"/>
+            </g>
+            <g transform="rotate(60 450 400)">
+              <ellipse class="art-el fillr ink" data-color="#F28DB2" cx="450" cy="268" rx="78" ry="118"/>
+            </g>
+            <g transform="rotate(120 450 400)">
+              <ellipse class="art-el fillr ink" data-color="#F28DB2" cx="450" cy="268" rx="78" ry="118"/>
+            </g>
+            <g transform="rotate(180 450 400)">
+              <ellipse class="art-el fillr ink" data-color="#F28DB2" cx="450" cy="268" rx="78" ry="118"/>
+            </g>
+            <g transform="rotate(240 450 400)">
+              <ellipse class="art-el fillr ink" data-color="#F28DB2" cx="450" cy="268" rx="78" ry="118"/>
+            </g>
+            <g transform="rotate(300 450 400)">
+              <ellipse class="art-el fillr ink" data-color="#F28DB2" cx="450" cy="268" rx="78" ry="118"/>
+            </g>
+            <!-- petal separators drawn on top of petals, under the centre -->
+            <g class="art-el" fill="none" stroke="#2B2118" stroke-width="9" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+              <ellipse cx="450" cy="268" rx="78" ry="118" transform="rotate(0 450 400)"/>
+              <ellipse cx="450" cy="268" rx="78" ry="118" transform="rotate(60 450 400)"/>
+              <ellipse cx="450" cy="268" rx="78" ry="118" transform="rotate(120 450 400)"/>
+              <ellipse cx="450" cy="268" rx="78" ry="118" transform="rotate(180 450 400)"/>
+              <ellipse cx="450" cy="268" rx="78" ry="118" transform="rotate(240 450 400)"/>
+              <ellipse cx="450" cy="268" rx="78" ry="118" transform="rotate(300 450 400)"/>
+            </g>
+            <circle class="art-el fillr ink" data-color="#F9C74F" cx="450" cy="400" r="96"/>
+            <circle class="art-el" cx="424" cy="376" r="12" fill="#2B2118"/>
+            <circle class="art-el" cx="476" cy="376" r="12" fill="#2B2118"/>
+            <path class="art-el ink" d="M424 432 q26 22 52 0" fill="none"/>
+            <g class="spark" fill="#F9C74F">
+              <circle cx="190" cy="250" r="13"/><circle cx="730" cy="560" r="11"/>
+              <circle cx="690" cy="210" r="9"/><circle cx="210" cy="640" r="12"/>
+              <circle cx="780" cy="330" r="8"/>
+            </g>
+          </svg>
+        </div>
+        <div class="stamp">XONG!</div>
+      </section>
+
+      <!-- ================= PAGE 3 : NGÔI NHÀ ================= -->
+      <section class="scene" id="p3">
+        <div class="name">NGÔI NHÀ</div>
+        <div class="art">
+          <svg viewBox="0 0 900 900" id="art3">
+            <!-- sun -->
+            <circle class="art-el fillr ink" data-color="#F9C74F" cx="760" cy="150" r="74"/>
+            <g class="art-el ink" stroke-width="7">
+              <path d="M760 52 v-26"/><path d="M760 248 v26"/><path d="M662 150 h-26"/><path d="M858 150 h26"/>
+              <path d="M690 80 l-18 -18"/><path d="M830 80 l18 -18"/><path d="M690 220 l-18 18"/><path d="M830 220 l18 18"/>
+            </g>
+            <!-- clouds -->
+            <g class="art-el fillr" data-color="#CFE8F3">
+              <ellipse cx="180" cy="180" rx="70" ry="46"/>
+              <ellipse cx="240" cy="176" rx="56" ry="38"/>
+              <ellipse cx="128" cy="192" rx="52" ry="34"/>
+            </g>
+            <!-- grass -->
+            <rect class="art-el fillr ink" data-color="#9BCF6B" x="70" y="742" width="760" height="128" rx="16"/>
+            <!-- body -->
+            <rect class="art-el fillr ink" data-color="#F4D06F" x="278" y="398" width="344" height="356"/>
+            <!-- roof -->
+            <polygon class="art-el fillr ink" data-color="#E76F51" points="238,406 450,222 662,406"/>
+            <!-- chimney -->
+            <rect class="art-el fillr ink" data-color="#C9762F" x="542" y="262" width="58" height="112"/>
+            <!-- door -->
+            <rect class="art-el fillr ink" data-color="#B5651D" x="414" y="582" width="96" height="172" rx="8"/>
+            <circle class="art-el" cx="488" cy="670" r="9" fill="#FFFDF7"/>
+            <!-- windows -->
+            <rect class="art-el fillr ink" data-color="#A8DADC" x="318" y="470" width="96" height="96" rx="6"/>
+            <rect class="art-el fillr ink" data-color="#A8DADC" x="492" y="470" width="96" height="96" rx="6"/>
+            <g class="art-el ink" stroke-width="7">
+              <path d="M366 470 v96"/><path d="M318 518 h96"/>
+              <path d="M540 470 v96"/><path d="M492 518 h96"/>
+            </g>
+            <g class="spark" fill="#F9C74F">
+              <circle cx="150" cy="300" r="12"/><circle cx="760" cy="700" r="11"/>
+              <circle cx="240" cy="640" r="9"/><circle cx="700" cy="380" r="10"/>
+            </g>
+          </svg>
+        </div>
+        <div class="stamp">XONG!</div>
+      </section>
+
+      <div id="hud">
+        <div class="dot" id="d0"></div>
+        <div class="dot" id="d1"></div>
+        <div class="dot" id="d2"></div>
+      </div>
+      <div id="brand">BÉ TÔ MÀU</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      gsap.set(".scene", { opacity: 0 });
+      gsap.set(".art-el", { opacity: 0 });
+      // colouring-book base: every colour region starts as paper white
+      document.querySelectorAll(".fillr").forEach((el) => el.setAttribute("fill", "#FFFDF7"));
+
+      const page = (id, t0, len) => {
+        const root = "#" + id;
+        tl.to(root, { opacity: 1, duration: .01 }, t0);
+        tl.from(root + " .name", { opacity: 0, y: 26, duration: .5 }, t0 + .1);
+        tl.from(root + " .art", { opacity: 0, y: 40, scale: .97, duration: .6, transformOrigin: "50% 50%" }, t0 + .05);
+        // ink appears stroke by stroke
+        tl.to(root + " .art-el", { opacity: 1, duration: .28, stagger: .035 }, t0 + .3);
+        // colour fills in
+        const fills = document.querySelectorAll(root + " .fillr");
+        fills.forEach((el, i) => {
+          tl.to(el, { attr: { fill: el.dataset.color }, duration: .5, ease: "power2.out" }, t0 + 1.45 + i * 0.22);
+        });
+        // sparkle + stamp
+        tl.to(root + " .spark circle", { opacity: 1, scale: 1.25, duration: .3, stagger: .07, transformOrigin: "50% 50%" }, t0 + 5.3);
+        tl.to(root + " .spark circle", { opacity: 0, duration: .4, stagger: .05 }, t0 + 6.2);
+        tl.fromTo(root + " .stamp",
+          { opacity: 0, scale: 0, rotate: -7 },
+          { opacity: 1, scale: 1, rotate: -7, duration: .45, ease: "back.out(2.4)", transformOrigin: "50% 50%" },
+          t0 + 5.55);
+        // gentle push in, then out
+        tl.to(root + " .art", { scale: 1.04, duration: 1.6, transformOrigin: "50% 50%" }, t0 + 6.1);
+        tl.to(root + " .stamp", { opacity: 0, duration: .3 }, t0 + len - .35);
+        tl.to(root, { opacity: 0, duration: .5 }, t0 + len - .3);
+      };
+
+      page("p1", 0.0, 8.4);
+      page("p2", 8.5, 8.4);
+      page("p3", 17.0, 8.5);
+
+      // progress dots
+      const on = (id, t) => tl.to("#" + id, { backgroundColor: "#E76F51", scaleY: 1.7, duration: .3, transformOrigin: "50% 50%" }, t);
+      on("d0", 0.2); tl.to("#d0", { backgroundColor: "rgba(120,80,40,.22)", scaleY: 1, duration: .3 }, 8.5);
+      on("d1", 8.7); tl.to("#d1", { backgroundColor: "rgba(120,80,40,.22)", scaleY: 1, duration: .3 }, 17.0);
+      on("d2", 17.2);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
